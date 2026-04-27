@@ -26,6 +26,10 @@ export class PacienteComponent {
     direccion: ['']
   });
 
+  get nombres() {
+    return this.pacienteFormulario.get('nombres')!;
+  }
+
   paciente = signal<Paciente>({
     nombres: '',
     apellidos: '',
