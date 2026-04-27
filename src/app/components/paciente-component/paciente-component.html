@@ -1,0 +1,99 @@
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">Formulario de Pacientes</h2>
+
+    <form [formRoot]="pacienteFormulario" class="card p-4 shadow">
+
+        <div class="row">
+
+            
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombres</label>
+                <input type="text" class="form-control" [formField]="pacienteFormulario.nombres">
+
+                @if (pacienteFormulario.nombres().invalid()) {
+                    @for (error of pacienteFormulario.nombres().errors(); track error) {
+                        <small class="text-danger">{{error.message}}</small>
+                    }
+                }
+            </div>
+
+            
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Apellidos</label>
+                <input type="text" class="form-control" [formField]="pacienteFormulario.apellidos">
+
+                @if (pacienteFormulario.apellidos().invalid()) {
+                    @for (error of pacienteFormulario.apellidos().errors(); track error) {
+                        <small class="text-danger">{{error.message}}</small>
+                    }
+                }
+            </div>
+
+           
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Edad</label>
+                <input type="number" class="form-control" [formField]="pacienteFormulario.edad">
+            </div>
+
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Sexo</label>
+                <select class="form-select" [formField]="pacienteFormulario.sexo">
+                    <option value="">Seleccione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+           
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" [formField]="pacienteFormulario.direccion">
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary w-100 mt-2" type="submit">
+            Guardar Paciente
+        </button>
+
+    </form>
+
+    
+    <div class="mt-5">
+        <h3 class="mb-3">Lista de Pacientes</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                        <th>Sexo</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (p of listaPacientes(); track p.id) {
+                        <tr>
+                            <td>{{p.id}}</td>
+                            <td>{{p.nombres}}</td>
+                            <td>{{p.apellidos}}</td>
+                            <td>{{p.edad}}</td>
+                            <td>{{p.sexo}}</td>
+                            <td>{{p.direccion}}</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
