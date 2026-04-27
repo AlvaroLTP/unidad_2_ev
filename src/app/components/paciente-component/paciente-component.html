@@ -9,12 +9,10 @@
             
             <div class="col-md-6 mb-3">
                 <label class="form-label">Nombres</label>
-                <input type="text" class="form-control" [formField]="pacienteFormulario.nombres">
+                <input type="text" class="form-control" formControlName="nombres">
 
-                @if (pacienteFormulario.nombres().invalid()) {
-                    @for (error of pacienteFormulario.nombres().errors(); track error) {
-                        <small class="text-danger">{{error.message}}</small>
-                    }
+                @if (nombres.invalid && nombres.touched) {
+                    <small class="text-danger">Campo obligatorio</small>
                 }
             </div>
 
@@ -40,18 +38,6 @@
                     <option value="otro">Otro</option>
                 </select>
             </div>
-
-            
-            <div class="col-md-4 mb-3">
-                <label class="form-label">Atención</label>
-                <select class="form-select" formControlName="atencion">
-                    <option value="">Seleccione</option>
-                    <option value="inicio">Inicio</option>
-                    <option value="proceso">Proceso</option>
-                    <option value="terminado">Terminado</option>
-                </select>
-            </div>
-
            
             <div class="col-md-4 mb-3">
                 <label class="form-label">Dirección</label>
